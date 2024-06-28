@@ -15,15 +15,8 @@ public class App {
     public void run() {
         System.out.println("== motivation execution ==");
 
-        int lastId = 0;
-
-//        Motivation motivation0 = null;
-//        Motivation motivation1 = null;
-//        Motivation motivation2 = null;
-
-//        Motivation[] motivations = new Motivation[3];
-
-        List<Motivation> motivations = new ArrayList<>();
+        int lastId = 0; // 몇 번까지 썼더라?
+        List<Motivation> motivations = new ArrayList<>(); // motivation 저장소
 
         while (true) {
             System.out.print("command) ");
@@ -45,39 +38,23 @@ public class App {
                 String source = sc.nextLine();
 
                 Motivation motivation = new Motivation(id, body, source);
-//                motivation.id = id;
-//                motivation.body = body;
-//                motivation.source = source;
 
                 motivations.add(motivation);
 
-//                motivations[id - 1] = motivation;
-
-//                if (motivation.id == 1) {
-//                    motivation0 = motivation;
-//                } else if (motivation.id == 2) {
-//                    motivation1 = motivation;
-//                } else if (motivation.id == 3) {
-//                    motivation2 = motivation;
-//                }
-
                 System.out.printf("%d번 motivation이 등록 되었습니다\n", id);
-                lastId++;
+                lastId++; // 마지막 번호 증가
             } else if (cmd.equals("list")) {
-                System.out.println("== motivation list ==");
-                System.out.printf("  id   //   motivation   //  source   \n");
-                System.out.println("=".repeat(35));
-//                System.out.println(motivation2.toString());
-//                System.out.println(motivation1.toString());
-//                System.out.println(motivation0.toString());
-//                for (Motivation motivation : motivations) {
-//                    System.out.println(motivation.toString());
-//                }
                 if (motivations.size() == 0) {
                     System.out.println("등록된 motivation 없음");
-                } else {
-                    System.out.println("있음");
-                    System.out.println("등록된 motivation 갯수 : " + motivations.size());
+                    continue;
+                }
+                System.out.println("== motivation list ==");
+                System.out.printf("  id   //   source   //   body  \n");
+                System.out.println("=".repeat(35));
+
+                for (int i = motivations.size() - 1; i >= 0; i--) {
+                    Motivation motivation = motivations.get(i);
+                    System.out.printf("   %d  //    %s     //    %s  \n", motivation.getId(), motivation.getSource(), motivation.getBody());
                 }
             }
         }
